@@ -17,15 +17,24 @@ namespace Microsoft.Msagl.WpfGraphControl {
                 (d,e)=> ((AutomaticGraphLayoutControl)d)?.SetGraph()));
      
         private void SetGraph() {
-            if (Graph == null) {
+            if (Graph == null)
+            {
                 dockPanel.Children.Clear();
-                return;
             }
-            if (_graphViewer == null) {
-                _graphViewer = new GraphViewer();
-                _graphViewer.BindToPanel(dockPanel);
+            else 
+            {
+                if (_graphViewer == null) {
+                    _graphViewer = new GraphViewer();
+                }
+                if (dockPanel.Children.Count == 0)
+                {
+                    _graphViewer.BindToPanel(dockPanel);
+                }
             }
-            _graphViewer.Graph = Graph;
+            if (_graphViewer != null)
+            {
+                _graphViewer.Graph = Graph;
+            }
         }
     }
 }
